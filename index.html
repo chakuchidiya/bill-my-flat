@@ -1,0 +1,1435 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BillMyFlat – Simplify Society Billing & Management</title>
+
+  <!-- Fonts & Icons -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+
+  <style>
+    :root {
+      --primary: #ffffff;
+      --primary-dark: #f8fafc;
+      --primary-soft: #f1f5f9;
+      --accent: #22c55e;
+      --accent-soft: #4ade80;
+      --accent-bg: rgba(34,197,94,0.08);
+
+      --bg-main: #ffffff;
+      --bg-section: #ffffff;
+      --bg-card: #ffffff;
+      --bg-card-soft: #f9fafb;
+
+      --text-light: #0f172a;
+      --text-soft: #475569;
+      --text-muted: #64748b;
+
+      --border-soft: #e2e8f0;
+      --shadow-soft: 0 18px 45px rgba(15,23,42,0.08);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html, body {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
+      color: var(--text-light);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    /* HEADER */
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      backdrop-filter: blur(16px);
+      background: rgba(255,255,255,0.95);
+      border-bottom: 1px solid var(--border-soft);
+      padding: 0.9rem 5vw;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+    }
+
+    .logo-wrap {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+
+    .logo-mark {
+      width: 34px;
+      height: 34px;
+      border-radius: 12px;
+      background: radial-gradient(circle at 20% 0%, #4ade80 0, #22c55e 35%, #16a34a 60%, #166534 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 12px rgba(34,197,94,0.3);
+      font-size: 1rem;
+      font-weight: 800;
+      color: #ffffff;
+    }
+
+    .logo-text-main {
+      font-weight: 600;
+      letter-spacing: 0.02em;
+      font-size: 1.1rem;
+      color: var(--text-light);
+    }
+
+    .logo-text-sub {
+      font-size: 0.7rem;
+      color: var(--text-soft);
+      margin-top: -2px;
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      font-size: 0.9rem;
+    }
+
+    nav a {
+      color: var(--text-soft);
+      position: relative;
+      padding-bottom: 3px;
+      transition: color 0.22s ease;
+    }
+
+    nav a::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 0;
+      height: 2px;
+      border-radius: 999px;
+      background: linear-gradient(90deg, #4ade80, #22c55e);
+      transition: width 0.22s ease;
+    }
+
+    nav a:hover {
+      color: var(--text-light);
+    }
+
+    nav a:hover::after {
+      width: 100%;
+    }
+
+    @media (max-width: 768px) {
+      header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.75rem;
+        padding: 0.9rem 1.25rem 1.1rem;
+      }
+
+      nav {
+        flex-wrap: wrap;
+        gap: 0.9rem;
+      }
+    }
+
+    /* MAIN LAYOUT WRAPPER */
+
+    main {
+      padding: 2.5rem 5vw 4rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    @media (max-width: 768px) {
+      main {
+        padding: 2rem 1.25rem 3.5rem;
+      }
+    }
+
+    /* HERO */
+
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1.4fr) minmax(0, 1.1fr);
+      gap: 2.75rem;
+      align-items: center;
+      padding: 3rem 2.75rem 3.25rem;
+      margin-top: 1.75rem;
+      border-radius: 24px;
+      border: 1px solid var(--border-soft);
+      background:
+        radial-gradient(circle at top left, rgba(34,197,94,0.05) 0, transparent 55%),
+        radial-gradient(circle at bottom right, rgba(59,130,246,0.03) 0, transparent 55%),
+        linear-gradient(135deg, #ffffff, #fafafa 45%, #f5f5f5 100%);
+      box-shadow: var(--shadow-soft);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: -40%;
+      background:
+        radial-gradient(circle at 0% 0%, rgba(74,222,128,0.06) 0, transparent 50%),
+        radial-gradient(circle at 100% 100%, rgba(59,130,246,0.04) 0, transparent 55%);
+      opacity: 0.6;
+      pointer-events: none;
+    }
+
+    .hero-inner {
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.25rem 0.7rem;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.9);
+      border: 1px solid var(--border-soft);
+      font-size: 0.75rem;
+      color: var(--text-soft);
+      margin-bottom: 1rem;
+    }
+
+    .hero-tag-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: #22c55e;
+      box-shadow: 0 0 12px rgba(34,197,94,0.5);
+    }
+
+    .hero-heading {
+      font-size: 2.6rem;
+      line-height: 1.2;
+      letter-spacing: -0.03em;
+      margin-bottom: 0.75rem;
+      color: var(--text-light);
+    }
+
+    .hero-heading span {
+      background: linear-gradient(90deg,#4ade80,#22c55e,#16a34a);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .hero-subtitle {
+      color: var(--text-soft);
+      font-size: 0.98rem;
+      max-width: 430px;
+      margin-bottom: 1.4rem;
+    }
+
+    .hero-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin-bottom: 1.6rem;
+    }
+
+    .hero-pill {
+      font-size: 0.75rem;
+      padding: 0.25rem 0.7rem;
+      border-radius: 999px;
+      border: 1px solid var(--border-soft);
+      color: var(--text-soft);
+      background: rgba(255,255,255,0.9);
+    }
+
+    .hero-cta-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.85rem;
+    }
+
+    .hero-cta-btn {
+      position: relative;
+      border-radius: 999px;
+      background: radial-gradient(circle at 0 0, #bbf7d0 0, #22c55e 30%, #15803d 70%);
+      color: #ffffff;
+      padding: 0.7rem 1.6rem;
+      font-size: 0.9rem;
+      font-weight: 600;
+      border: none;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      box-shadow: 0 8px 20px rgba(34,197,94,0.3);
+      overflow: hidden;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .hero-cta-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 28px rgba(34,197,94,0.4);
+    }
+
+    .hero-cta-btn span.cta-glow {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 0 0, rgba(255,255,255,0.5) 0, transparent 55%);
+      mix-blend-mode: soft-light;
+      opacity: 0.0;
+      pointer-events: none;
+    }
+
+    .hero-cta-hint {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+    }
+
+    .hero-cta-hint i {
+      color: #22c55e;
+      margin-right: 0.3rem;
+    }
+
+    /* HERO RIGHT / MOCK DASHBOARD */
+
+    .hero-right {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .mock-card {
+      width: 100%;
+      max-width: 420px;
+      border-radius: 18px;
+      padding: 1.1rem 1.1rem 1.2rem;
+      border: 1px solid var(--border-soft);
+      background:
+        radial-gradient(circle at top left, rgba(59,130,246,0.05) 0, transparent 55%),
+        linear-gradient(145deg,#ffffff,#fafafa);
+      box-shadow: 0 18px 55px rgba(15,23,42,0.12);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .mock-card-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 0.85rem;
+    }
+
+    .mock-title {
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--text-soft);
+    }
+
+    .mock-badge {
+      font-size: 0.7rem;
+      padding: 0.15rem 0.55rem;
+      border-radius: 999px;
+      background: rgba(22,163,74,0.1);
+      border: 1px solid rgba(22,163,74,0.3);
+      color: #15803d;
+    }
+
+    .mock-main-row {
+      display: flex;
+      gap: 0.65rem;
+      margin-bottom: 0.8rem;
+    }
+
+    .mock-stat {
+      flex: 1;
+      border-radius: 12px;
+      padding: 0.6rem 0.75rem;
+      background: rgba(22,163,74,0.05);
+      border: 1px solid rgba(22,163,74,0.2);
+    }
+
+    .mock-stat-label {
+      font-size: 0.68rem;
+      color: #16a34a;
+      margin-bottom: 0.2rem;
+    }
+
+    .mock-stat-value {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--text-light);
+    }
+
+    .mock-stat-sub {
+      font-size: 0.68rem;
+      color: #22c55e;
+      opacity: 0.85;
+    }
+
+    .mock-list {
+      margin-top: 0.4rem;
+      border-radius: 12px;
+      background: rgba(248,250,252,0.9);
+      border: 1px solid var(--border-soft);
+      padding: 0.6rem 0.6rem 0.45rem;
+    }
+
+    .mock-list-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.4rem 0.35rem;
+      border-radius: 8px;
+      font-size: 0.72rem;
+      color: var(--text-soft);
+    }
+
+    .mock-list-row + .mock-list-row {
+      margin-top: 0.2rem;
+    }
+
+    .mock-list-row span.flat {
+      color: var(--text-light);
+    }
+
+    .mock-chip {
+      font-size: 0.65rem;
+      padding: 0.05rem 0.45rem;
+      border-radius: 999px;
+      background: rgba(241,245,249,0.9);
+      border: 1px solid var(--border-soft);
+    }
+
+    .mock-chip.due {
+      border-color: rgba(239,68,68,0.3);
+      color: #dc2626;
+      background: rgba(239,68,68,0.05);
+    }
+
+    .mock-floating-badge {
+      position: absolute;
+      right: 12px;
+      bottom: 12px;
+      font-size: 0.7rem;
+      padding: 0.25rem 0.75rem;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.96);
+      border: 1px solid var(--border-soft);
+      color: var(--text-soft);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    }
+
+    .mock-floating-badge i {
+      color: #22c55e;
+    }
+
+    .hero-orbit-dot {
+      position: absolute;
+      width: 9px;
+      height: 9px;
+      border-radius: 999px;
+      background: #22c55e;
+      box-shadow: 0 0 16px rgba(34,197,94,0.5);
+      opacity: 0;
+    }
+
+    /* SECTIONS */
+
+    .section-block {
+      margin-top: 4rem;
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 2.3rem;
+    }
+
+    .section-kicker {
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: var(--text-muted);
+      margin-bottom: 0.4rem;
+    }
+
+    .section-title {
+      font-size: 1.6rem;
+      margin-bottom: 0.4rem;
+      color: var(--text-light);
+    }
+
+    .section-desc {
+      color: var(--text-soft);
+      font-size: 0.9rem;
+      max-width: 540px;
+      margin: 0 auto;
+    }
+
+    /* FEATURE GRID */
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit,minmax(230px,1fr));
+      gap: 1.4rem;
+    }
+
+    .feature-card {
+      border-radius: 16px;
+      padding: 1.3rem 1.1rem 1.4rem;
+      background: linear-gradient(135deg, #ffffff 0%, #fafafa 100%);
+      border: 1px solid var(--border-soft);
+      box-shadow: 0 4px 12px rgba(15,23,42,0.06);
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 24px rgba(15,23,42,0.1);
+    }
+
+    .feature-icon {
+      width: 30px;
+      height: 30px;
+      border-radius: 999px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 0.7rem;
+      background: rgba(34,197,94,0.1);
+      border: 1px solid rgba(34,197,94,0.2);
+      color: #22c55e;
+      font-size: 0.9rem;
+    }
+
+    .feature-title {
+      font-size: 0.98rem;
+      font-weight: 500;
+      margin-bottom: 0.25rem;
+      color: var(--text-light);
+    }
+
+    .feature-text {
+      font-size: 0.86rem;
+      color: var(--text-soft);
+      margin-bottom: 0.5rem;
+    }
+
+    .feature-tagline {
+      font-size: 0.75rem;
+      color: #3b82f6;
+    }
+
+    .feature-glow {
+      position: absolute;
+      inset: -40%;
+      background:
+        radial-gradient(circle at 0 0, rgba(74,222,128,0.1) 0, transparent 55%),
+        radial-gradient(circle at 100% 100%, rgba(59,130,246,0.08) 0, transparent 55%);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+    }
+
+    .feature-card:hover .feature-glow {
+      opacity: 1;
+    }
+
+    /* HOW IT WORKS */
+
+    .how-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit,minmax(240px,1fr));
+      gap: 1.4rem;
+    }
+
+    .how-step {
+      border-radius: 16px;
+      padding: 1.4rem 1.3rem 1.5rem;
+      background: linear-gradient(135deg, #ffffff 0%, #fafafa 100%);
+      border: 1px solid var(--border-soft);
+      box-shadow: 0 4px 12px rgba(15,23,42,0.06);
+    }
+
+    .how-step-number {
+      font-size: 0.74rem;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: var(--text-muted);
+      margin-bottom: 0.4rem;
+    }
+
+    .how-step-title {
+      font-size: 1rem;
+      margin-bottom: 0.3rem;
+      color: var(--text-light);
+    }
+
+    .how-step-text {
+      font-size: 0.86rem;
+      color: var(--text-soft);
+    }
+
+    /* SPLIT SECTION */
+
+    .split-section {
+      display: grid;
+      grid-template-columns: minmax(0,1.15fr) minmax(0,1.1fr);
+      gap: 2.2rem;
+      align-items: center;
+      margin-top: 3.5rem;
+    }
+
+    .split-card {
+      border-radius: 20px;
+      padding: 1.3rem 1.4rem 1.4rem;
+      background:
+        radial-gradient(circle at top left, rgba(74,222,128,0.05) 0, transparent 55%),
+        radial-gradient(circle at bottom right, rgba(59,130,246,0.05) 0, transparent 55%),
+        #ffffff;
+      border: 1px solid var(--border-soft);
+      box-shadow: 0 8px 20px rgba(15,23,42,0.08);
+    }
+
+    .split-list {
+      list-style: none;
+      margin-top: 0.7rem;
+    }
+
+    .split-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.6rem;
+      font-size: 0.84rem;
+      color: var(--text-soft);
+      margin-bottom: 0.4rem;
+    }
+
+    .split-list i {
+      margin-top: 2px;
+      color: #22c55e;
+    }
+
+    .mini-metrics {
+      display: grid;
+      grid-template-columns: repeat(auto-fit,minmax(120px,1fr));
+      gap: 0.75rem;
+      margin-top: 1rem;
+    }
+
+    .mini-metric {
+      border-radius: 14px;
+      padding: 0.7rem 0.9rem;
+      background: rgba(248,250,252,0.9);
+      border: 1px solid var(--border-soft);
+      font-size: 0.8rem;
+    }
+
+    .mini-metric-label {
+      color: var(--text-muted);
+      font-size: 0.7rem;
+      margin-bottom: 0.15rem;
+    }
+
+    .mini-metric-value {
+      font-size: 0.9rem;
+      color: var(--text-light);
+    }
+
+    /* TESTIMONIALS */
+
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit,minmax(260px,1fr));
+      gap: 1.4rem;
+    }
+
+    .testimonial-card {
+      border-radius: 18px;
+      padding: 1.35rem 1.2rem 1.4rem;
+      background: linear-gradient(135deg, #ffffff 0%, #fafafa 100%);
+      border: 1px solid var(--border-soft);
+      box-shadow: 0 4px 12px rgba(15,23,42,0.06);
+      font-size: 0.86rem;
+      color: var(--text-soft);
+    }
+
+    .testimonial-quote {
+      font-style: italic;
+      margin-bottom: 0.8rem;
+      position: relative;
+    }
+
+    .testimonial-quote::before {
+      content: """;
+      position: absolute;
+      left: -10px;
+      top: -8px;
+      font-size: 2rem;
+      color: rgba(100,116,139,0.2);
+    }
+
+    .testimonial-name {
+      font-size: 0.82rem;
+      color: var(--text-light);
+    }
+
+    .testimonial-role {
+      font-size: 0.74rem;
+      color: var(--text-muted);
+    }
+
+    /* CONTACT */
+
+    .contact-section {
+      margin-top: 4rem;
+      border-radius: 22px;
+      padding: 2.2rem 1.9rem 2.4rem;
+      background:
+        radial-gradient(circle at top left, rgba(74,222,128,0.05) 0, transparent 60%),
+        #ffffff;
+      border: 1px solid var(--border-soft);
+      box-shadow: 0 8px 24px rgba(15,23,42,0.08);
+      display: grid;
+      grid-template-columns: minmax(0,1.2fr) minmax(0,1.1fr);
+      gap: 2.2rem;
+    }
+
+    .contact-text h3 {
+      font-size: 1.4rem;
+      margin-bottom: 0.5rem;
+      color: var(--text-light);
+    }
+
+    .contact-text p {
+      font-size: 0.9rem;
+      color: var(--text-soft);
+      margin-bottom: 1rem;
+    }
+
+    .contact-meta {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+    }
+
+    .contact-meta div {
+      margin-bottom: 0.25rem;
+    }
+
+    .contact-meta i {
+      color: #22c55e;
+      margin-right: 0.4rem;
+    }
+
+    .contact-form {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .contact-form-row {
+      display: flex;
+      gap: 0.75rem;
+    }
+
+    .contact-form-row > div {
+      flex: 1;
+    }
+
+    .field-label {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      margin-bottom: 0.15rem;
+    }
+
+    .field-input, .field-textarea {
+      width: 100%;
+      border-radius: 12px;
+      border: 1px solid var(--border-soft);
+      padding: 0.55rem 0.8rem;
+      background: rgba(255,255,255,0.96);
+      color: var(--text-light);
+      font-family: inherit;
+      font-size: 0.85rem;
+      outline: none;
+      transition: border-color 0.16s ease, box-shadow 0.16s ease, background 0.16s ease;
+    }
+
+    .field-input:focus, .field-textarea:focus {
+      border-color: #22c55e;
+      box-shadow: 0 0 0 3px rgba(34,197,94,0.1);
+      background: #ffffff;
+    }
+
+    .field-textarea {
+      resize: vertical;
+      min-height: 100px;
+      max-height: 220px;
+    }
+
+    .contact-submit {
+      margin-top: 0.3rem;
+      align-self: flex-start;
+      border-radius: 999px;
+      background: radial-gradient(circle at 0 0, #bbf7d0 0, #22c55e 30%, #15803d 70%);
+      color: #ffffff;
+      border: none;
+      padding: 0.6rem 1.5rem;
+      font-size: 0.88rem;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      cursor: pointer;
+      box-shadow: 0 8px 20px rgba(34,197,94,0.3);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .contact-submit:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 28px rgba(34,197,94,0.4);
+    }
+
+    .contact-note {
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      margin-top: 0.4rem;
+    }
+
+    @media (max-width: 900px) {
+      .hero {
+        grid-template-columns: minmax(0,1fr);
+        padding: 2.25rem 1.7rem 2.5rem;
+      }
+
+      .hero-right {
+        margin-top: 1.5rem;
+      }
+
+      .split-section {
+        grid-template-columns: minmax(0,1fr);
+      }
+
+      .contact-section {
+        grid-template-columns: minmax(0,1fr);
+        padding: 1.8rem 1.4rem 2.1rem;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .hero-heading {
+        font-size: 2rem;
+      }
+
+      .hero {
+        padding: 1.9rem 1.3rem 2.2rem;
+      }
+
+      .contact-form-row {
+        flex-direction: column;
+      }
+    }
+
+    /* FOOTER */
+
+    footer {
+      padding: 2.2rem 5vw 1.8rem;
+      border-top: 1px solid var(--border-soft);
+      margin-top: 3.3rem;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.75rem;
+      background: #fafafa;
+    }
+
+    .footer-brand {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+
+    .footer-brand span {
+      color: var(--text-soft);
+    }
+
+    .footer-links {
+      display: flex;
+      align-items: center;
+      gap: 0.9rem;
+    }
+
+    .footer-links a {
+      color: var(--text-muted);
+    }
+
+    .footer-links a:hover {
+      color: var(--text-light);
+    }
+  </style>
+</head>
+<body>
+  <!-- HEADER -->
+  <header>
+    <div class="logo-wrap">
+      <div class="logo-mark">BF</div>
+      <div>
+        <div class="logo-text-main">BillMyFlat</div>
+        <div class="logo-text-sub">Society Billing & Management</div>
+      </div>
+    </div>
+    <nav>
+      <a href="#hero">Home</a>
+      <a href="#features">Features</a>
+      <a href="#how">How it works</a>
+      <a href="#testimonials">Stories</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <main>
+    <!-- HERO -->
+    <section class="hero" id="hero">
+      <div class="hero-inner">
+        <div class="hero-tag">
+          <span class="hero-tag-dot"></span>
+          Live for modern housing societies
+        </div>
+        <h1 class="hero-heading">
+          BillMyFlat – <span>Simplify Society Billing & Management</span>
+        </h1>
+        <p class="hero-subtitle">
+          Automate maintenance billing, track payments, and keep every resident in sync —
+          without spreadsheets, manual reminders, or confusion.
+        </p>
+
+        <div class="hero-pills">
+          <div class="hero-pill">Automated monthly bills</div>
+          <div class="hero-pill">Smart reminders</div>
+          <div class="hero-pill">Real-time reports</div>
+          <div class="hero-pill">Resident portal</div>
+        </div>
+
+        <div class="hero-cta-row">
+          <button class="hero-cta-btn" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">
+            <span>Contact Us</span>
+            <i class="fas fa-arrow-right"></i>
+            <span class="cta-glow"></span>
+          </button>
+          <div class="hero-cta-hint">
+            <i class="fas fa-shield-check"></i>
+            No spam. We'll only contact you about your society.
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-right">
+        <div class="mock-card">
+          <div class="mock-card-header">
+            <div class="mock-title">Current Month Collections</div>
+            <div class="mock-badge">
+              <i class="fas fa-circle-check"></i> Healthy
+            </div>
+          </div>
+
+          <div class="mock-main-row">
+            <div class="mock-stat">
+              <div class="mock-stat-label">Collected</div>
+              <div class="mock-stat-value">₹ 4,52,300</div>
+              <div class="mock-stat-sub">92% of billed</div>
+            </div>
+            <div class="mock-stat" style="background: rgba(59,130,246,0.05); border-color: rgba(59,130,246,0.2);">
+              <div class="mock-stat-label" style="color: #2563eb;">Pending</div>
+              <div class="mock-stat-value">₹ 38,200</div>
+              <div class="mock-stat-sub" style="color: #3b82f6;">18 flats</div>
+            </div>
+          </div>
+
+          <div class="mock-list">
+            <div class="mock-list-row">
+              <span class="flat">A-304</span>
+              <span class="mock-chip">Paid • UPI</span>
+            </div>
+            <div class="mock-list-row">
+              <span class="flat">B-1202</span>
+              <span class="mock-chip due">Due • 12 days</span>
+            </div>
+            <div class="mock-list-row">
+              <span class="flat">C-706</span>
+              <span class="mock-chip">Paid • NetBanking</span>
+            </div>
+          </div>
+
+          <div class="mock-floating-badge">
+            <i class="fas fa-bell"></i>
+            Auto reminders enabled
+          </div>
+        </div>
+
+        <div class="hero-orbit-dot" id="orbit-dot"></div>
+      </div>
+    </section>
+
+    <!-- FEATURES OVERVIEW -->
+    <section class="section-block" id="features">
+      <div class="section-header">
+        <div class="section-kicker">Platform overview</div>
+        <h2 class="section-title">Everything your committee needs, in one place</h2>
+        <p class="section-desc">
+          From billing and reminders to analytics and resident access, BillMyFlat replaces
+          scattered tools with a single, clean dashboard.
+        </p>
+      </div>
+
+      <div class="features-grid">
+        <article class="feature-card">
+          <div class="feature-glow"></div>
+          <div class="feature-icon">
+            <i class="fas fa-file-invoice"></i>
+          </div>
+          <h3 class="feature-title">Automated maintenance billing</h3>
+          <p class="feature-text">
+            Configure flat-wise charges once — BillMyFlat generates monthly invoices for every flat automatically.
+          </p>
+          <div class="feature-tagline">Supports fixed, sq. ft. and hybrid models.</div>
+        </article>
+
+        <article class="feature-card">
+          <div class="feature-glow"></div>
+          <div class="feature-icon">
+            <i class="fas fa-bell"></i>
+          </div>
+          <h3 class="feature-title">Smart reminders that just work</h3>
+          <p class="feature-text">
+            Gentle reminder flows for upcoming and overdue payments, with zero manual follow-up from the committee.
+          </p>
+          <div class="feature-tagline">Email / SMS / WhatsApp ready (as configured).</div>
+        </article>
+
+        <article class="feature-card">
+          <div class="feature-glow"></div>
+          <div class="feature-icon">
+            <i class="fas fa-chart-line"></i>
+          </div>
+          <h3 class="feature-title">Real-time collections dashboard</h3>
+          <p class="feature-text">
+            Know exactly how much has been collected, what's pending, and which flats need attention — in seconds.
+          </p>
+          <div class="feature-tagline">Export-ready reports for audits & AGMs.</div>
+        </article>
+
+        <article class="feature-card">
+          <div class="feature-glow"></div>
+          <div class="feature-icon">
+            <i class="fas fa-users"></i>
+          </div>
+          <h3 class="feature-title">Resident self-service portal</h3>
+          <p class="feature-text">
+            Residents can see bills, history and announcements anytime — reducing "WhatsApp spam" to the committee.
+          </p>
+          <div class="feature-tagline">Built for clarity and transparency.</div>
+        </article>
+
+        <article class="feature-card">
+          <div class="feature-glow"></div>
+          <div class="feature-icon">
+            <i class="fas fa-lock"></i>
+          </div>
+          <h3 class="feature-title">Secure & role-based access</h3>
+          <p class="feature-text">
+            Separate access for treasurer, secretary, committee and residents with clear, permission-based controls.
+          </p>
+          <div class="feature-tagline">Your data stays encrypted and safe.</div>
+        </article>
+
+        <article class="feature-card">
+          <div class="feature-glow"></div>
+          <div class="feature-icon">
+            <i class="fas fa-mobile-screen-button"></i>
+          </div>
+          <h3 class="feature-title">Works on any device</h3>
+          <p class="feature-text">
+            Designed for mobile-first usage — committee members can check stats on the go, residents can pay from anywhere.
+          </p>
+          <div class="feature-tagline">No app store friction — runs in the browser.</div>
+        </article>
+      </div>
+    </section>
+
+    <!-- HOW IT WORKS + TRANSPARENCY -->
+    <section class="section-block" id="how">
+      <div class="section-header">
+        <div class="section-kicker">Flow</div>
+        <h2 class="section-title">How BillMyFlat fits into your monthly cycle</h2>
+        <p class="section-desc">
+          Simple for committees, transparent for residents, and structured enough for auditors.
+        </p>
+      </div>
+
+      <div class="how-grid">
+        <article class="how-step">
+          <div class="how-step-number">Step 1</div>
+          <h3 class="how-step-title">Set up your society</h3>
+          <p class="how-step-text">
+            Add buildings, flats, owners and tenants. Configure your billing logic — fixed per flat,
+            per sq. ft., parking, sinking fund, or any custom head.
+          </p>
+        </article>
+        <article class="how-step">
+          <div class="how-step-number">Step 2</div>
+          <h3 class="how-step-title">Generate & share bills</h3>
+          <p class="how-step-text">
+            With a single action, generate invoices for the entire society. Residents receive a clear
+            breakdown with due dates and payment options.
+          </p>
+        </article>
+        <article class="how-step">
+          <div class="how-step-number">Step 3</div>
+          <h3 class="how-step-title">Track payments in real time</h3>
+          <p class="how-step-text">
+            See who has paid, what's pending, and auto-trigger reminders for dues. Export clean reports
+            at month-end for books and meetings.
+          </p>
+        </article>
+      </div>
+
+      <div class="split-section">
+        <div>
+          <h3 class="section-title" style="font-size:1.3rem; margin-bottom:0.4rem;">
+            Designed around transparency & trust
+          </h3>
+          <p class="section-desc" style="margin:0; text-align:left; max-width:none;">
+            Every rupee is traceable. Every resident sees the same numbers as the committee.
+          </p>
+
+          <ul class="split-list">
+            <li>
+              <i class="fas fa-check-circle"></i>
+              <span>Consistent, system-generated invoices instead of ad-hoc Excel sheets.</span>
+            </li>
+            <li>
+              <i class="fas fa-check-circle"></i>
+              <span>Clear mapping of each payment to a flat, invoice and month.</span>
+            </li>
+            <li>
+              <i class="fas fa-check-circle"></i>
+              <span>Audit-ready reports that help during society elections and AGMs.</span>
+            </li>
+            <li>
+              <i class="fas fa-check-circle"></i>
+              <span>Built to reduce disputes around "who paid what & when".</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="split-card">
+          <div class="mini-metrics">
+            <div class="mini-metric">
+              <div class="mini-metric-label">Average on-time payments</div>
+              <div class="mini-metric-value">↑ 28%</div>
+            </div>
+            <div class="mini-metric">
+              <div class="mini-metric-label">Manual follow-ups</div>
+              <div class="mini-metric-value">↓ 60%</div>
+            </div>
+            <div class="mini-metric">
+              <div class="mini-metric-label">Committee time saved</div>
+              <div class="mini-metric-value">~ 8 hrs / month</div>
+            </div>
+          </div>
+          <p style="font-size:0.83rem; color:var(--text-soft); margin-top:0.8rem;">
+            Committees using BillMyFlat report smoother communication with residents
+            and fewer conflicts around payments and notices.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- TESTIMONIALS -->
+    <section class="section-block" id="testimonials">
+      <div class="section-header">
+        <div class="section-kicker">Stories</div>
+        <h2 class="section-title">Societies that run smoother with BillMyFlat</h2>
+        <p class="section-desc">
+          Built with feedback from committees, treasurers and residents — not just from a boardroom.
+        </p>
+      </div>
+
+      <div class="testimonials-grid">
+        <article class="testimonial-card">
+          <p class="testimonial-quote">
+            Our treasurer used to spend entire weekends on bills and follow-ups.
+            With BillMyFlat, monthly billing takes minutes and is 10x more accurate.
+          </p>
+          <div class="testimonial-name">Meera Nair</div>
+          <div class="testimonial-role">Treasurer • Sunrise Residency</div>
+        </article>
+
+        <article class="testimonial-card">
+          <p class="testimonial-quote">
+            Residents see clear bills, the committee sees real-time numbers. That transparency
+            has genuinely improved trust in our society.
+          </p>
+          <div class="testimonial-name">Karan Patel</div>
+          <div class="testimonial-role">Chairman • GreenHeights Co-op</div>
+        </article>
+
+        <article class="testimonial-card">
+          <p class="testimonial-quote">
+            Earlier, everyone flooded the WhatsApp group asking for amounts and due dates.
+            Now they just log in and see everything themselves.
+          </p>
+          <div class="testimonial-name">Neha Shah</div>
+          <div class="testimonial-role">Secretary • Palm Residency</div>
+        </article>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section class="contact-section" id="contact">
+      <div class="contact-text">
+        <h3>Contact us about your society</h3>
+        <p>
+          Tell us a bit about your housing society, and we'll reach out with next steps.
+          No sales spam, no pressure — just a straightforward conversation.
+        </p>
+        <div class="contact-meta">
+          <div><i class="fas fa-envelope"></i>hello@billmyflat.com</div>
+          <div><i class="fas fa-building"></i>Ideal for 20+ flat societies, gated communities & townships.</div>
+        </div>
+      </div>
+
+      <form class="contact-form" onsubmit="event.preventDefault(); contactSubmitted();">
+        <div class="contact-form-row">
+          <div>
+            <div class="field-label">Your Name</div>
+            <input class="field-input" type="text" name="name" required placeholder="Full name">
+          </div>
+          <div>
+            <div class="field-label">Email</div>
+            <input class="field-input" type="email" name="email" required placeholder="you@example.com">
+          </div>
+        </div>
+
+        <div class="contact-form-row">
+          <div>
+            <div class="field-label">Society Name</div>
+            <input class="field-input" type="text" name="society" placeholder="e.g. GreenHeights Co-op">
+          </div>
+          <div>
+            <div class="field-label">Approx. number of flats</div>
+            <input class="field-input" type="number" name="flats" min="1" placeholder="e.g. 120">
+          </div>
+        </div>
+
+        <div>
+          <div class="field-label">What would you like help with?</div>
+          <textarea class="field-textarea" name="message" placeholder="Tell us about your current process or pain points…" required></textarea>
+        </div>
+
+        <button type="submit" class="contact-submit">
+          <i class="fas fa-paper-plane"></i>
+          Contact Us
+        </button>
+        <div class="contact-note">
+          We'll reply from <b>hello@billmyflat.com</b>. Add it to your safe senders to avoid missing our response.
+        </div>
+      </form>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-brand">
+      <div class="logo-mark" style="width:26px;height:26px;font-size:0.8rem;">BF</div>
+      <span>© 2025 BillMyFlat — Simplify Society Billing & Management</span>
+    </div>
+    <div class="footer-links">
+      <a href="#hero">Top</a>
+      <a href="#features">Features</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </footer>
+
+  <!-- GSAP + ANIMATIONS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script>
+    gsap.registerPlugin(ScrollTrigger);
+
+    // HERO intro animation
+    gsap.from(".hero-tag", {
+      y: -10,
+      opacity: 0,
+      duration: 0.5,
+      ease: "power2.out"
+    });
+
+    gsap.from(".hero-heading", {
+      y: 20,
+      opacity: 0,
+      duration: 0.9,
+      delay: 0.1,
+      ease: "power3.out"
+    });
+
+    gsap.from(".hero-subtitle", {
+      y: 14,
+      opacity: 0,
+      duration: 0.8,
+      delay: 0.25,
+      ease: "power2.out"
+    });
+
+    gsap.from(".hero-pill", {
+      opacity: 0,
+      y: 12,
+      duration: 0.5,
+      delay: 0.35,
+      stagger: 0.06,
+      ease: "power2.out"
+    });
+
+    gsap.from(".hero-cta-row", {
+      opacity: 0,
+      y: 14,
+      duration: 0.7,
+      delay: 0.55,
+      ease: "power2.out"
+    });
+
+    gsap.from(".mock-card", {
+      opacity: 0,
+      y: 30,
+      duration: 0.9,
+      delay: 0.35,
+      ease: "power3.out"
+    });
+
+    // Floating orbit dot around mock card
+    const orbitDot = document.getElementById("orbit-dot");
+    if (orbitDot) {
+      gsap.set(orbitDot, { opacity: 1 });
+      gsap.to(orbitDot, {
+        duration: 8,
+        repeat: -1,
+        ease: "none",
+        motionPath: {
+          path: [
+            { x: -40, y: -60 },
+            { x: 40, y: -80 },
+            { x: 80, y: -20 },
+            { x: 20, y: 30 },
+            { x: -60, y: 10 }
+          ],
+          curviness: 1.5,
+          autoRotate: false
+        }
+      });
+    }
+
+    // CTA glow pulse
+    gsap.to(".cta-glow", {
+      opacity: 0.45,
+      duration: 1.6,
+      repeat: -1,
+      yoyo: true,
+      ease: "sine.inOut"
+    });
+
+    // Feature cards scroll animation
+    gsap.utils.toArray(".feature-card").forEach((card, i) => {
+      gsap.from(card, {
+        scrollTrigger: {
+          trigger: card,
+          start: "top 80%"
+        },
+        opacity: 0,
+        y: 28,
+        duration: 0.6,
+        delay: i * 0.03,
+        ease: "power2.out"
+      });
+
+      const glow = card.querySelector(".feature-glow");
+      if (glow) {
+        card.addEventListener("mouseenter", () => {
+          gsap.to(glow, { opacity: 0.9, duration: 0.3, ease: "power2.out" });
+        });
+        card.addEventListener("mouseleave", () => {
+          gsap.to(glow, { opacity: 0, duration: 0.35, ease: "power2.out" });
+        });
+      }
+    });
+
+    // Sections / how steps / testimonials
+    gsap.utils.toArray(".how-step").forEach((el, i) => {
+      gsap.from(el, {
+        scrollTrigger: {
+          trigger: el,
+          start: "top 82%"
+        },
+        opacity: 0,
+        y: 26,
+        duration: 0.65,
+        delay: i * 0.05,
+        ease: "power2.out"
+      });
+    });
+
+    gsap.utils.toArray(".split-section, .testimonials-grid, .contact-section").forEach((block) => {
+      gsap.from(block, {
+        scrollTrigger: {
+          trigger: block,
+          start: "top 82%"
+        },
+        opacity: 0,
+        y: 32,
+        duration: 0.75,
+        ease: "power3.out"
+      });
+    });
+
+    // Simple contact "submitted" feedback
+    function contactSubmitted() {
+      gsap.to(".contact-submit", {
+        scale: 0.96,
+        duration: 0.1,
+        yoyo: true,
+        repeat: 1,
+        ease: "power1.out"
+      });
+
+      alert("Thanks for reaching out! We will get back to you from hello@billmyflat.com.");
+    }
+  </script>
+</body>
+</html>

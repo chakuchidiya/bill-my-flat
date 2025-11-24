@@ -1058,8 +1058,6 @@
             Planned: Auto reminders
           </div>
         </div>
-
-        <!-- <div class="hero-orbit-dot" id="orbit-dot"></div> -->
       </div>
     </section>
 
@@ -1385,9 +1383,17 @@
             <div class="field-label">Your Name</div>
             <input class="field-input" type="text" name="name" required placeholder="Full name">
           </div>
+          
+        </div>
+
+        <div class="contact-form-row">
           <div>
             <div class="field-label">Email</div>
             <input class="field-input" type="email" name="email" required placeholder="you@example.com">
+          </div>
+          <div>
+            <div class="field-label">Phone Number</div>
+            <input class="field-input" type="number" name="phonenumber" required placeholder="8888888888">
           </div>
         </div>
 
@@ -1430,10 +1436,63 @@
     </div>
   </footer>
 
-  <!-- GSAP + ANIMATIONS -->
+  <!-- GSAP + ANIMATIONS + SUPABASE INTEGRATION -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
   <script>
+    const SUPABASE_URL = "https://gcchldhxmyjvteqxkmtj.supabase.co";
+    const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImdjY2hsZGh4bXlqdnRlcXhrbXRqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjM5NDc0NDIsImV4cCI6MjA3OTUyMzQ0Mn0.IY5F7v20KWeilwEIgxxqMxS0PqRRwPkhnNmJnLgZkfY";
+
+    async function contactSubmitted() {
+      const form = document.querySelector(".contact-form");
+      const submitBtn = form.querySelector(".contact-submit");
+
+      const payload = {
+        fullname: form.name.value.trim(),
+        email: form.email.value.trim(),
+        phonenumber: form.phonenumber.value ? parseInt(form.flats.value, 10) : null,
+        society_name: form.society.value.trim(),
+        number_of_flat: form.flats.value ? parseInt(form.flats.value, 10) : null,
+        description: form.message.value.trim()
+      };
+
+      if (!payload.fullname || !payload.email || !payload.description) {
+        alert("Please fill in your name,phone number,email and message.");
+        return;
+      }
+
+      submitBtn.disabled = true;
+      const originalText = submitBtn.innerHTML;
+      submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Submitting...';
+
+      try {
+        const res = await fetch(`${SUPABASE_URL}/rest/v1/survey_info`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "apikey": SUPABASE_ANON_KEY,
+            "Authorization": `Bearer ${SUPABASE_ANON_KEY}`,
+            "Prefer": "return=minimal"
+          },
+          body: JSON.stringify(payload)
+        });
+
+        if (!res.ok) {
+          console.error("Supabase error status:", res.status);
+          alert("Something went wrong while saving your details. Please try again.");
+        } else {
+          alert("Thanks for reaching out! We’ll get back to you about early access.");
+          form.reset();
+        }
+      } catch (err) {
+        console.error("Network or script error:", err);
+        alert("Network error. Please check your connection and try again.");
+      } finally {
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = originalText;
+      }
+    }
+
     gsap.registerPlugin(ScrollTrigger);
 
     // HERO intro animation
@@ -1483,29 +1542,6 @@
       duration: 0.9,
       delay: 0.35,
       ease: "power3.out"
-    });
-
-    // Simple floating dot animation (no MotionPath plugin needed)
-    const orbitDot = document.getElementById("orbit-dot");
-    if (orbitDot) {
-      gsap.set(orbitDot, { opacity: 1, x: 0, y: 0 });
-      gsap.to(orbitDot, {
-        x: 40,
-        y: -30,
-        duration: 3,
-        yoyo: true,
-        repeat: -1,
-        ease: "sine.inOut"
-      });
-    }
-
-    // CTA glow pulse
-    gsap.to(".cta-glow", {
-      opacity: 0.45,
-      duration: 1.6,
-      repeat: -1,
-      yoyo: true,
-      ease: "sine.inOut"
     });
 
     // Feature cards scroll animation
@@ -1560,19 +1596,6 @@
         ease: "power3.out"
       });
     });
-
-    // Simple contact "submitted" feedback
-    function contactSubmitted() {
-      gsap.to(".contact-submit", {
-        scale: 0.96,
-        duration: 0.1,
-        yoyo: true,
-        repeat: 1,
-        ease: "power1.out"
-      });
-
-      alert("Thanks for reaching out! We’ll get back to you from hello@billmyflat.com about early access.");
-    }
   </script>
 </body>
 </html>

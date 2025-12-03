@@ -774,98 +774,99 @@
 
     <!-- SURVEY -->
     <section class="survey-wrapper section-block" id="survey">
-      <div class="survey-header">
-        <h3 class="survey-header-title">Tell us about your current billing reality</h3>
-        <p class="survey-header-desc">
-          There’s no “perfect” answer. Just share how things really work today — tools you use,
-          where it hurts, and what “better” would look like for you.
-        </p>
+  <div class="survey-header">
+    <h3 class="survey-header-title">Tell us about your current billing reality</h3>
+    <p class="survey-header-desc">
+      There’s no “perfect” answer. Just share how things really work today.
+    </p>
+  </div>
+
+  <form id="surveyForm">
+
+    <!-- Q1 -->
+    <div class="q-block">
+      <div class="q-label">1. What do you currently use for society billing?</div>
+      <div class="q-hint">Select all that apply.</div>
+      <div class="options" data-group="usage">
+        <div class="pill" data-value="Excel sheets">Excel sheets</div>
+        <div class="pill" data-value="Google Sheets">Google Sheets</div>
+        <div class="pill" data-value="Apartment billing app">Apartment billing app</div>
+        <div class="pill" data-value="Manual registers">Manual registers</div>
+        <div class="pill" data-value="WhatsApp messages">WhatsApp messages</div>
+        <div class="pill" data-value="Something else">Something else</div>
+      </div>
+    </div>
+
+    <!-- Q2 -->
+    <div class="q-block">
+      <div class="q-label">2. Biggest billing & collection problems?</div>
+      <div class="q-hint">Select all that apply.</div>
+      <div class="options" data-group="pain">
+        <div class="pill" data-value="Late payments">Late payments</div>
+        <div class="pill" data-value="Hard to track who has paid">Hard to track who has paid</div>
+        <div class="pill" data-value="Excel formulas break">Excel formulas break</div>
+        <div class="pill" data-value="Manual follow-ups">Manual follow-ups</div>
+        <div class="pill" data-value="Different numbers shown">Different numbers shown</div>
+        <div class="pill" data-value="Month-end reconciliation painful">Month-end reconciliation painful</div>
+      </div>
+    </div>
+
+    <!-- Q3 -->
+    <div class="q-block">
+      <div class="q-label">3. If BillMyFlat worked perfectly, what would change?</div>
+      <textarea name="expectations" required></textarea>
+    </div>
+
+    <!-- Q4 -->
+    <div class="q-block">
+      <div class="q-label">4. Your role in the society</div>
+      <div class="q-hint">Select one.</div>
+      <div class="options" data-group="role">
+        <div class="pill" data-value="Treasurer">Treasurer</div>
+        <div class="pill" data-value="Secretary">Secretary</div>
+        <div class="pill" data-value="Committee member">Committee member</div>
+        <div class="pill" data-value="Resident / Owner">Resident / Owner</div>
+        <div class="pill" data-value="Facility / Admin">Facility / Admin</div>
+        <div class="pill" data-value="Other">Other</div>
+      </div>
+    </div>
+
+    <!-- DETAILS -->
+    <div class="q-block">
+      <div class="q-label">5. Your details</div>
+
+      <div class="grid-2">
+        <div>
+          <div class="q-hint">Your name</div>
+          <input type="text" name="name" required>
+        </div>
+
+        <div>
+          <div class="q-hint">Email</div>
+          <input type="email" name="email" required>
+        </div>
       </div>
 
-      <form id="surveyForm">
-        <!-- Q1 -->
-        <div class="q-block">
-          <div class="q-label">1. What do you currently use for society billing?</div>
-          <div class="q-hint">Select all that apply.</div>
-          <div class="options" data-group="usage">
-            <div class="pill">Excel sheets</div>
-            <div class="pill">Google Sheets</div>
-            <div class="pill">Apartment billing app</div>
-            <div class="pill">Manual registers</div>
-            <div class="pill">WhatsApp messages</div>
-            <div class="pill">Something else</div>
-          </div>
+      <div class="grid-2" style="margin-top:0.9rem;">
+        <div>
+          <div class="q-hint">Phone (WhatsApp preferred)</div>
+          <input type="tel" name="phone" required>
         </div>
 
-        <!-- Q2 -->
-        <div class="q-block">
-          <div class="q-label">2. What are your biggest billing & collection problems?</div>
-          <div class="q-hint">Select all that apply.</div>
-          <div class="options" data-group="pain">
-            <div class="pill">Late payments</div>
-            <div class="pill">Hard to track who has paid</div>
-            <div class="pill">Excel formulas keep breaking</div>
-            <div class="pill">Manual follow-ups take too much time</div>
-            <div class="pill">Residents see different numbers</div>
-            <div class="pill">Reconciliation at month-end is painful</div>
-          </div>
+        <div>
+          <div class="q-hint">Society name</div>
+          <input type="text" name="society">
         </div>
+      </div>
+    </div>
 
-        <!-- Q3 -->
-        <div class="q-block">
-          <div class="q-label">3. If BillMyFlat worked perfectly for you, what would change?</div>
-          <div class="q-hint">For example: “Everyone sees the same numbers, reminders run automatically, audit reports are one click…”</div>
-          <textarea name="expectations" required></textarea>
-        </div>
+    <button type="submit" class="submit-btn">
+      <span>Submit survey</span> →
+    </button>
 
-        <!-- Q4 - Role -->
-        <div class="q-block">
-          <div class="q-label">4. Your role in the society</div>
-          <div class="q-hint">Helps us understand your perspective.</div>
-          <div class="options" data-group="role">
-            <div class="pill">Treasurer</div>
-            <div class="pill">Secretary</div>
-            <div class="pill">Committee member</div>
-            <div class="pill">Resident / Owner</div>
-            <div class="pill">Facility / Admin</div>
-            <div class="pill">Other</div>
-          </div>
-        </div>
+  </form>
+</section>
 
-        <!-- DETAILS -->
-        <div class="q-block">
-          <div class="q-label">5. A few details so we can reach you</div>
-          <div class="grid-2">
-            <div>
-              <div class="q-hint">Your name</div>
-              <input type="text" name="name" required placeholder="Full name">
-            </div>
-            <div>
-              <div class="q-hint">Email</div>
-              <input type="email" name="email" required placeholder="you@example.com">
-            </div>
-          </div>
-          <div class="grid-2" style="margin-top:0.9rem;">
-            <div>
-              <div class="q-hint">Phone number (WhatsApp preferred)</div>
-              <input type="tel" name="phone" required placeholder="98765 43210">
-            </div>
-            <div>
-              <div class="q-hint">Society name (optional but helpful)</div>
-              <input type="text" name="society" placeholder="e.g. GreenHeights Co-op">
-            </div>
-          </div>
-        </div>
-
-        <button type="submit" class="submit-btn">
-          <span>Submit survey</span>
-          <span>→</span>
-        </button>
-        <div class="form-note">
-          We’ll reply from <b>hello@billmyflat.com</b>. Your details will only be used to talk to you about BillMyFlat.
-        </div>
-      </form>
-    </section>
   </main>
 
   <footer>
@@ -878,181 +879,79 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 
   <script>
-    const SUPABASE_URL = "https://gcchldhxmyjvteqxkmtj.supabase.co";
-    const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImdjY2hsZGh4bXlqdnRlcXhrbXRqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjM5NDc0NDIsImV4cCI6MjA3OTUyMzQ0Mn0.IY5F7v20KWeilwEIgxxqMxS0PqRRwPkhnNmJnLgZkfY";
+const SUPABASE_URL = "https://gcchldhxmyjvteqxkmtj.supabase.co";
+const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImdjY2hsZGh4bXlqdnRlcXhrbXRqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjM5NDc0NDIsImV4cCI6MjA3OTUyMzQ0Mn0.IY5F7v20KWeilwEIgxxqMxS0PqRRwPkhnNmJnLgZkfY";
 
-    // GSAP animations
-    gsap.registerPlugin(ScrollTrigger);
+// pill selection logic
+document.querySelectorAll(".options").forEach(group => {
+  group.addEventListener("click", e => {
+    if (!e.target.classList.contains("pill")) return;
 
-    gsap.from(".hero-tag", {
-      opacity: 0,
-      y: -12,
-      duration: 0.5,
-      ease: "power2.out"
-    });
+    // Multi-select groups
+    const isMulti = group.dataset.group !== "role";
 
-    gsap.from(".hero-title", {
-      opacity: 0,
-      y: 20,
-      duration: 0.9,
-      delay: 0.05,
-      ease: "power3.out"
-    });
+    if (!isMulti) {
+      group.querySelectorAll(".pill").forEach(p => p.classList.remove("active"));
+    }
 
-    gsap.from(".hero-subtitle", {
-      opacity: 0,
-      y: 16,
-      duration: 0.8,
-      delay: 0.2,
-      ease: "power2.out"
-    });
+    e.target.classList.toggle("active");
+  });
+});
 
-    gsap.from(".hero-points .hero-chip", {
-      opacity: 0,
-      y: 14,
-      duration: 0.6,
-      delay: 0.3,
-      ease: "power2.out",
-      stagger: 0.06
-    });
+const form = document.getElementById("surveyForm");
 
-    gsap.from(".hero-cta-row", {
-      opacity: 0,
-      y: 18,
-      duration: 0.75,
-      delay: 0.45,
-      ease: "power2.out"
-    });
+form.addEventListener("submit", async e => {
+  e.preventDefault();
 
-    gsap.from(".hero-widget", {
-      opacity: 0,
-      y: 30,
-      duration: 0.9,
-      delay: 0.3,
-      ease: "power3.out"
-    });
+  const usage = [...document.querySelectorAll("[data-group='usage'] .pill.active")]
+    .map(x => x.dataset.value);
 
-    gsap.utils.toArray(".snapshot-card").forEach((card, i) => {
-      gsap.from(card, {
-        scrollTrigger: {
-          trigger: card,
-          start: "top 80%"
-        },
-        opacity: 0,
-        y: 30,
-        duration: 0.6,
-        ease: "power2.out",
-        delay: i * 0.05
-      });
-    });
+  const pain = [...document.querySelectorAll("[data-group='pain'] .pill.active")]
+    .map(x => x.dataset.value);
 
-    gsap.from(".survey-wrapper", {
-      scrollTrigger: {
-        trigger: ".survey-wrapper",
-        start: "top 82%"
+  const role = [...document.querySelectorAll("[data-group='role'] .pill.active")]
+    .map(x => x.dataset.value)[0] || null;
+
+  const expectations = form.expectations.value.trim();
+  const fullname = form.name.value.trim();
+  const email = form.email.value.trim();
+  const phone = form.phone.value.trim();
+  const society = form.society.value.trim();
+
+  const payload = {
+    usage,
+    pain_points: pain,
+    role,
+    expectations,
+    fullname,
+    email,
+    phonenumber: phone,
+    society_name: society || null
+  };
+
+  try {
+    const res = await fetch(`${SUPABASE_URL}/rest/v1/survey_responses`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "apikey": SUPABASE_ANON_KEY,
+        "Authorization": `Bearer ${SUPABASE_ANON_KEY}`
       },
-      opacity: 0,
-      y: 36,
-      duration: 0.8,
-      ease: "power3.out"
+      body: JSON.stringify(payload)
     });
 
-    // hover float for snapshot cards
-    document.querySelectorAll(".snapshot-card").forEach(card => {
-      card.addEventListener("mouseenter", () => {
-        gsap.to(card, { y: -4, duration: 0.2, ease: "power2.out" });
-      });
-      card.addEventListener("mouseleave", () => {
-        gsap.to(card, { y: 0, duration: 0.25, ease: "power2.out" });
-      });
-    });
+    if (res.ok) {
+      alert("Thank you! Your survey was submitted.");
+      form.reset();
+      document.querySelectorAll(".pill.active").forEach(p => p.classList.remove("active"));
+    } else {
+      alert("Error saving your survey.");
+    }
+  } catch (err) {
+    alert("Network error. Try again.");
+  }
+});
+</script>
 
-    // pill selection
-    document.querySelectorAll(".options").forEach(group => {
-      group.addEventListener("click", (e) => {
-        if (e.target.classList.contains("pill")) {
-          e.target.classList.toggle("active");
-        }
-      });
-    });
-
-    // submit handler
-    const form = document.getElementById("surveyForm");
-    const submitBtn = form.querySelector(".submit-btn");
-
-    form.addEventListener("submit", async (e) => {
-      e.preventDefault();
-
-      const usage = [...document.querySelectorAll("[data-group='usage'] .pill.active")].map(p => p.textContent);
-      const pain  = [...document.querySelectorAll("[data-group='pain'] .pill.active")].map(p => p.textContent);
-      const role  = [...document.querySelectorAll("[data-group='role'] .pill.active")].map(p => p.textContent);
-
-      const name = form.name.value.trim();
-      const email = form.email.value.trim();
-      const phoneRaw = form.phone.value.trim();
-      const society = form.society.value.trim();
-      const expectations = form.expectations.value.trim();
-
-      if (!name || !email || !phoneRaw || !expectations) {
-        alert("Please fill in your name, email, phone and expectations.");
-        return;
-      }
-
-      const phoneNumberParsed = parseInt(phoneRaw.replace(/\D/g, ""), 10);
-      const phoneNumber = isNaN(phoneNumberParsed) ? null : phoneNumberParsed;
-
-      const descriptionLines = [
-        `Usage: ${usage.length ? usage.join(", ") : "Not specified"}`,
-        `Pain Points: ${pain.length ? pain.join(", ") : "Not specified"}`,
-        `Role: ${role.length ? role.join(", ") : "Not specified"}`,
-        `Expectations: ${expectations}`
-      ];
-
-      if (society) {
-        descriptionLines.push(`Society: ${society}`);
-      }
-
-      const payload = {
-        fullname: name,
-        email: email,
-        phonenumber: phoneNumber,
-        society_name: society || "Survey page – not specified",
-        number_of_flat: null,
-        description: descriptionLines.join("\n")
-      };
-
-      submitBtn.disabled = true;
-      const originalText = submitBtn.innerHTML;
-      submitBtn.innerHTML = "<span>Submitting…</span>";
-
-      try {
-        const res = await fetch(`${SUPABASE_URL}/rest/v1/survey_info`, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            "apikey": SUPABASE_ANON_KEY,
-            "Authorization": `Bearer ${SUPABASE_ANON_KEY}`,
-            "Prefer": "return=minimal"
-          },
-          body: JSON.stringify(payload)
-        });
-
-        if (!res.ok) {
-          console.error("Supabase error:", res.status);
-          alert("Something went wrong while saving your survey. Please try again.");
-        } else {
-          alert("Thank you! Your survey has been submitted.");
-          form.reset();
-          document.querySelectorAll(".pill.active").forEach(p => p.classList.remove("active"));
-        }
-      } catch (err) {
-        console.error("Network error:", err);
-        alert("Network error. Please check your connection and try again.");
-      } finally {
-        submitBtn.disabled = false;
-        submitBtn.innerHTML = originalText;
-      }
-    });
-  </script>
 </body>
 </html>
